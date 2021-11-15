@@ -1,0 +1,152 @@
+﻿# Primera consulta
+{
+  owners{
+   id,
+    firtname:name, 
+    address,
+    accounts{
+      id,
+      type
+    }
+  }
+}
+
+
+
+# Consulta con Parametro, alias y orden de llamadas.
+{
+  firts:owner(ownerId:"247f57a7-9cfa-414c-aec7-058ca5972667"){
+   id,
+    firtname:name, 
+    address,
+    accounts{
+      id,
+      type
+    }
+  },
+  
+    second:owner(ownerId:"2b20bba1-67de-4105-b53a-e54b6895ea2b"){
+   id,
+    name, address,
+    accounts{
+      id,
+      type
+    }
+  }
+}
+
+
+# DataLoader
+{
+  firts:owner(ownerId:"247f57a7-9cfa-414c-aec7-058ca5972667"){
+  ...ownerFields
+  },
+  
+    second:owner(ownerId:"2b20bba1-67de-4105-b53a-e54b6895ea2b"){
+  ...ownerFields
+  }
+  
+}
+
+fragment ownerFields on OwnerType{
+   id,
+    name, 
+    address,
+    accounts{
+      id,
+      type
+    }
+}
+
+#Owner Query con variables.
+query ownerQuery($ownerID: ID!)
+{
+  owner(ownerId: $ownerID)
+  {
+    id,
+    name,
+    address,
+    accounts{
+      id,
+      type
+    }
+  }
+}
+
+
+{
+  "ownerID": "2b20bba1-67de-4105-b53a-e54b6895ea2b"
+}
+
+#Filtro de campos condicionales
+query ownerQuery($ownerID: ID!, $showName: Boolean!)
+{
+  owner(ownerId: $ownerID)
+  {
+    id,
+    name @skip(if:$showName),
+    address,
+    accounts{
+      id,
+      type
+    }
+  }
+}
+
+
+{
+  "ownerID": "2b20bba1-67de-4105-b53a-e54b6895ea2b",
+  "showName": true
+}
+
+
+#---------------MUTACIONES---------
+#Mutacion - Create
+
+mutation($owner: ownerInput!){
+  createOwner(owner:$owner){
+    id,
+    name,
+    address
+  }
+}
+
+#variables
+{
+  "owner": {
+    "name": "Israel",
+    "address": "Lozano"
+  }
+}
+
+#Mutacion - Update
+
+mutation($owner:ownerInput!, $ownerId: ID!)
+{
+  updateOwner(owner:$owner, ownerId: $ownerId){
+    id,
+    name,
+    address
+  }
+}
+#Variables....
+{
+  "owner": {
+    "name": "Sandra",
+    "address": "Sandoval"
+  },
+  "ownerId": "81858562-326a-42ea-a15e-022d155801d1"
+}
+
+#Mutacion - Delete
+
+mutation($ownerId: ID!)
+{
+ deleteOwner(ownerId:$ownerId)
+}
+
+#variable...
+
+{
+  "ownerId": "81858562-326a-42ea-a15e-022d155801d1"
+}
