@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Dic.GraphQL.Demo.Controllers
+namespace Dic.GraphQL.Cliente.Net.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -28,9 +28,6 @@ namespace Dic.GraphQL.Demo.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
-
-
         }
-
     }
 }

@@ -4,14 +4,14 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:51836",
+      "applicationUrl": "http://localhost:14020",
       "sslPort": 0
     }
   },
   "profiles": {
-    "Dic.GraphQL.Demo": {
+    "Dic.GraphQL.Cliente.Net": {
       "commandName": "Project",
-      "applicationUrl": "http://localhost:5236",
+      "applicationUrl": "http://localhost:5060",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

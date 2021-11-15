@@ -1,4 +1,4 @@
-namespace Dic.GraphQL.Demo
+namespace Dic.GraphQL.Cliente.Net
 {
     public class WeatherForecast
     {
